@@ -248,7 +248,7 @@ De plus, les premiers octets de p nous donne une bonne approximation p0 de p. Si
 
 * ### Attaque et implémentation : méthode de Coppersmith
 
-Nous allons donc trouver les racines du polynôme `f` dans l'anneau Z/NZ avec la méthode de coppersmith qui utilise l'algorithme LLL pour trouver les petites `x` racines d'un polynôme dans un anneau, telles que `|x|` est majorée par un entier `X`. On sait que p fait `0x41 * 8 = 520` bits de long, cependant le premier octet = les 8 premiers bits sont nuls donc p fait en réalité 512 bits de long. On dispose dès lors de 3 octets = 26 bits, il nous manque ainsi 488 bits. On peut ainsi prendre `X = (premiers octets de p || "00" * 61) - (premiers octets de p || "ff" * 61) = 2 ^ (8 * 61) - 1 = 2^488 - 1`.\
+Nous allons donc trouver les racines du polynôme `f` dans l'anneau Z/NZ avec la méthode de coppersmith qui utilise l'algorithme LLL pour trouver les petites racines `x` d'un polynôme dans un anneau, telles que `|x|` est majorée par un entier `X`. On sait que p fait `0x41 * 8 = 520` bits de long, cependant le premier octet = les 8 premiers bits sont nuls donc p fait en réalité 512 bits de long. On dispose dès lors de 3 octets = 26 bits, il nous manque ainsi 488 bits. On peut ainsi prendre `X = (premiers octets de p || "00" * 61) - (premiers octets de p || "ff" * 61) = 2 ^ (8 * 61) - 1 = 2^488 - 1`.\
 L'implémentation avec Sage de la méthode de coppersmith a été réalisée par David Wong ici : https://github.com/mimoo/RSA-and-LLL-attacks/blob/master/coppersmith.sage
 
 Implémentation de l'attaque :
